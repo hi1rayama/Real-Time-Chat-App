@@ -4,24 +4,24 @@
     <b-container fluid class="ld-over" v-bind:class="{ running: loading }">
       <div class="ld ld-ring ld-spin"></div>
       <b-row>
-        <b-col cols="2">
+        <b-col cols="2" class="roomlist">
+
           <RoomList />
         </b-col>
-
-        <b-col cols="8">
+        <b-col cols="6" >
           <b-row>
-            <b-col id="chat-content">
+            <b-col id="chat-content" >
               <MessageList />
             </b-col>
           </b-row>
           <b-row>
-            <b-col>
+            <b-col >
               <MessageForm />
             </b-col>
           </b-row>
         </b-col>
 
-        <b-col cols="2">
+        <b-col cols="3" class="members-list">
           <UserList />
         </b-col>
       </b-row>
@@ -53,3 +53,17 @@ export default {
   }
 }
 </script>
+
+<style >
+.roomlist{
+    margin-top: 5px;
+    margin-left: 40px;
+    background-color:#57c957;
+    border-radius: 15px;
+}
+.members-list{
+    margin-top: 5px;
+    background-color:#57c957;
+    border-radius: 15px;
+}
+</style>

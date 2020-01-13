@@ -1,6 +1,6 @@
 <template>
-  <div class="message-form ld-over">
-    <small class="text-muted"></small>
+  <div class="message-form-ld-over">
+    <small class="text-muted">@{{ user.username }}</small>
     <b-form @submit.prevent="onSubmit" class="ld-over" v-bind:class="{ running: sending }">
       <div class="ld ld-ring ld-spin"></div>
       <b-alert variant="danger" :show="hasError">{{ error }} </b-alert>
@@ -15,8 +15,8 @@
 </b-form-input>
       </b-form-group>
       <div class="clearfix">
-        <b-button type="submit" variant="primary" class="float-right">
-          Send
+        <b-button type="submit" variant="success" >
+          送 信
         </b-button>
       </div>
     </b-form>
@@ -61,3 +61,19 @@ export default {
   }
 }
 </script>
+
+<style>
+ .message-form-ld-over{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 4px;
+  border: 2px solid #57c957;
+  background-color: white;     
+
+ }
+.clearfix{
+    margin-bottom:2px;
+}
+</style>

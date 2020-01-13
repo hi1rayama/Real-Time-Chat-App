@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/css/loading.css'
 import './assets/css/loading-btn.css'
+process.version = "v1.1.1";//これを入れないとユーザとルームを作ることができない!!!!!!
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

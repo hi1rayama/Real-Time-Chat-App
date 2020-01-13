@@ -46,27 +46,7 @@ export default {
     }
   },
 
-  //サイイン処理
-  async signin({commit},obj) {
-    try {
-      commit('setError', '');
-      commit('setLoading', true);
-
-      var userFullName,userId;
-      userFullName=obj.userFullName;
-      userId=obj.userId;
-      window.alert(userFullName);
-      window.alert(userId);
-
-     await chatkit.CreateUser(userFullName, userId);
-      return true;
-    } catch (error) {
-      handleError(commit, error)
-    } finally {
-      commit('setLoading', false);
-    }
-  },
-  //サイイン処理
+  //ユーザー作成処理
   async createUser({commit},obj) {
     try {
       commit('setError', '');

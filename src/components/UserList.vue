@@ -1,9 +1,9 @@
 <template>
   <div class="user-list">
-    <h4>Members</h4>
+    <h4 ><font color="white">Members</font></h4>
     <hr>
     <b-list-group>
-      <b-list-group-item v-for="user in users" :key="user.username">
+      <b-list-group-item variant="success" v-for="user in users" :key="user.username">
         {{ user.name }}
         <b-badge v-if="user.presence"
         :variant="statusColor(user.presence)"
@@ -27,8 +27,13 @@ export default {
   },
   methods: {
     statusColor(status) {
-      return status === 'online' ? 'success' : 'warning'
+      return status === 'online' ? 'primary' : 'warning'
     }
   }
 }
 </script>
+<style>
+.user-list {
+    margin-top: 10px;
+}
+</style>

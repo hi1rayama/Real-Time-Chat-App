@@ -16,12 +16,12 @@
           :disabled="loading"
           required
         ></b-form-input>
-        <b-form-invalid-feedback id="input-live-feedback">Enter at least 3 letters</b-form-invalid-feedback>
+        <b-form-invalid-feedback id="input-live-feedback">最低でも3文字入力してください</b-form-invalid-feedback>
       </b-form-group>
 
       <b-button
         type="submit"
-        variant="info"
+        variant="success"
         class="ld-ext-right"
         v-bind:class="{ running: loading }"
         :disabled="isValid"

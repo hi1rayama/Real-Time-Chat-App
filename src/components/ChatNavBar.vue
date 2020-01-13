@@ -1,55 +1,61 @@
 <template>
-  <b-navbar id="chat-navbar" toggleable="md" type="dark" variant="info">
-    <b-navbar-brand href="#">
-      Vue Chat
-    </b-navbar-brand>
-    <b-navbar-nav class="ml-auto">
-      <b-nav-text>| </b-nav-text>
-      <b-nav-item href="#" @click="onLogout" active>Logout</b-nav-item>
-    </b-navbar-nav>
-  </b-navbar>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="success">
+      <b-navbar-brand href="#">Chat Demo</b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#" @click="onLogout">Logout</b-nav-item>
+        </b-navbar-nav>
+
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown text="SettingRoom" right>
+            <b-dropdown-item href="#">Create Room</b-dropdown-item>
+            <b-dropdown-item href="#">Join Room</b-dropdown-item>
+            <b-dropdown-item href="#">Leave Room</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
+
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: 'ChatNavBar',
+  name: "ChatNavBar",
   computed: {
-    ...mapState([
-      'user',
-       'reconnect'
-    ])
+    ...mapState(["user", "reconnect"])
   },
   methods: {
-    ...mapActions([
-      'logout',
-      'login'
-    ]),
-    ...mapMutations([
-      'setReconnect'
-    ]),
+    ...mapActions(["logout", "login"]),
+    ...mapMutations(["setReconnect"]),
     onLogout() {
-      this.$router.push({ path: '/' });
+      this.$router.push({ path: "/" });
       this.logout();
     },
     unload() {
-      if(this.user.username) { // User hasn't logged out
+      if (this.user.username) {
+        // User hasn't logged out
         this.setReconnect(true);
       }
     }
   },
   mounted() {
-    window.addEventListener('beforeunload', this.unload);
-    if(this.reconnect) {
+    window.addEventListener("beforeunload", this.unload);
+    if (this.reconnect) {
       this.login(this.user.username);
     }
   }
-}
+};
 </script>
 
 <style>
-  #chat-navbar {
-    margin-bottom: 15px;
-  }
+#chat-navbar {
+
+  margin-bottom: 15px;
+}
 </style>

@@ -50,11 +50,10 @@ async function CreateUser(userName,userId){
     name: userName
   })
     .then(() => {
-      return true
-    }).catch(() => {
-      return false
+      window.alert("success!");
+    }).catch((err) => {
+        window.alert(err);
     });
-
 
 }
 
