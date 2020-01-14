@@ -55,13 +55,13 @@ async function CreateUser(userName, userId) {
   })
     .then(() => {
       window.alert("User created success!");
-      AddUserToRoom('312a0630-c04e-4700-8546-754c1008a7ba',userId);
+      AddUserToRoom(userId,'312a0630-c04e-4700-8546-754c1008a7ba');
     }).catch((err) => {
       window.alert(err);
     });
 
 }
-async function AddUserToRoom(roomID,userId){
+async function AddUserToRoom(userId,roomID){
   chatkit.addUsersToRoom({
     roomId: roomID,
     userIds: [userId]

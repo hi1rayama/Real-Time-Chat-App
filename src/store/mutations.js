@@ -37,11 +37,18 @@ export default {
       state.userTyping = userId
     },
     reset(state) {
-      state.error = null;
-      state.users = [];
-      state.messages = [];
-      state.rooms = [];
-      state.user = null
+      state.loading= false;
+  state.sending= false,
+  state.error= null,
+  state.user= null,
+  state.reconnect= false,
+  state.activeRoom= null,
+  state.rooms= [],
+  state.users= [],
+  state.messages= [],
+  state.userTyping= null,
+  state.joinableRooms=[],
+  state.selectJoinRoomId=null
     },
     joinableRoom(state,joinablerooms){
       state.joinableRooms=joinablerooms;

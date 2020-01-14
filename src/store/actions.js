@@ -90,7 +90,6 @@ export default {
   async joinableRoom({commit,state}) {
     try {
       commit('setError', '');
-      commit('setLoading', true);
 
      await chatkit.GetUserJoinableRooms(state.user.username);
      //console.log(joinableRoomObj);
@@ -98,6 +97,20 @@ export default {
       handleError(commit, error)
     }
   },
+
+  //ルームに入る処理
+  async joinUserToRoom({commit,state}) {
+    try {
+      commit('setError', '');
+      
+      await chatkit.AddUserToRoom(state.user.username,state.selectJoinRoomId);
+      return true;
+    } catch (error) {
+      handleError(commit, error)
+      return false;
+    }
+  },
+
   //ルームチェンジを行う処理
   async changeRoom({ commit }, roomId) {
     try {
@@ -107,6 +120,8 @@ export default {
       handleError(commit, error)
     }
   },
+
+  
   async selectJoinRoom({ commit }, roomId) {
     try {
       commit('setSeletJoinRoom', roomId);
