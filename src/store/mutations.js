@@ -42,5 +42,11 @@ export default {
       state.messages = [];
       state.rooms = [];
       state.user = null
+    },
+    joinableRoom(state,joinablerooms){
+      state.joinableRooms=joinablerooms;
+    },
+    setSeletJoinRoom(state,roomId){
+      state.selectJoinRoomId=roomId;
     }
   }

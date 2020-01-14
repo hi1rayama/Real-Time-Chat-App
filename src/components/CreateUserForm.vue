@@ -65,7 +65,7 @@ export default {
   },
  methods: {
     ...mapActions([
-      'createUser'
+      'createUser',
     ]),
     async onSubmit() {
       const result = await this.createUser({userFullName:this.userFullName,userId:this.userId});

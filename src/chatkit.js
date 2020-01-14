@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client'
 import moment from 'moment'
 import store from './store/index'
@@ -11,6 +12,13 @@ const MESSAGE_LIMIT = Number(process.env.VUE_APP_MESSAGE_LIMIT) || 10;
 
 let currentUser = null;
 let activeRoom = null;
+
+const Chatkit = require('@pusher/chatkit-server');
+const chatkit = new Chatkit.default({
+  instanceLocator: INSTANCE_LOCATOR,
+  key: SECRET_KEY
+})
+
 
 
 //アクティブになっているルームのメンバーをセットする
@@ -34,15 +42,11 @@ async function connectUser(userId) {
   return currentUser;
 }
 
-const Chatkit = require('@pusher/chatkit-server');
-const chatkit = new Chatkit.default({
-  instanceLocator: INSTANCE_LOCATOR,
-  key: SECRET_KEY
-})
+
 
 
 //ユーザーを作成する関数
-async function CreateUser(userName,userId){
+async function CreateUser(userName, userId) {
 
 
   chatkit.createUser({
@@ -50,14 +54,51 @@ async function CreateUser(userName,userId){
     name: userName
   })
     .then(() => {
-      window.alert("success!");
+      window.alert("User created success!");
+      AddUserToRoom('312a0630-c04e-4700-8546-754c1008a7ba',userId);
     }).catch((err) => {
-        window.alert(err);
+      window.alert(err);
     });
 
 }
+async function AddUserToRoom(roomID,userId){
+  chatkit.addUsersToRoom({
+    roomId: roomID,
+    userIds: [userId]
+  })
+    .then(() => console.log('join'))
+    .catch(err => console.error(err))
 
 
+}
+async function CreateRoom(roomName, roomId, creatorId) {
+
+
+  chatkit.createRoom({
+    id: roomId,
+    creatorId: creatorId,
+    name: roomName,
+  })
+    .then(() => {
+      window.alert('Room created successfully');
+    }).catch((err) => {
+      window.alert(err);
+    });
+}
+
+function GetUserJoinableRooms(userID) {
+  chatkit.getUserJoinableRooms({
+    userId: userID
+  })
+    .then((roomList) => {
+      console.log(roomList);
+      store.commit('joinableRoom', roomList);
+      return roomList;
+    }).catch((err) => {
+      console.log(err);
+      return -1;
+    });
+}
 
 async function subscribeToRoom(roomId) {
   store.commit('clearChatRoom');
@@ -103,7 +144,7 @@ export function isTyping(roomId) {
 }
 
 
- // ログアウト処理
+// ログアウト処理
 function disconnectUser() {
   currentUser.disconnect();
 }
@@ -114,5 +155,8 @@ export default {
   subscribeToRoom,
   sendMessage,
   disconnectUser,
-  CreateUser
+  CreateUser,
+  CreateRoom,
+  GetUserJoinableRooms,
+  AddUserToRoom
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import chatkit from '../chatkit';
 
 //setError,setLoadingなどはmutations.jsにある処理
@@ -66,6 +67,37 @@ export default {
       commit('setLoading', false);
     }
   },
+  //ルーム作成
+  async createRoom({commit},obj) {
+    try {
+      commit('setError', '');
+      commit('setLoading', true);
+      var roomId,roomName,creatorId;
+      roomId=obj.roomId;
+      roomName=obj.roomName;
+      creatorId=obj.creatorId;
+
+     await chatkit.CreateRoom(roomName,roomId,creatorId);
+      return true;
+    } catch (error) {
+      handleError(commit, error)
+    } finally {
+      commit('setLoading', false);
+    }
+  },
+
+  //参加可能なルームを取得
+  async joinableRoom({commit,state}) {
+    try {
+      commit('setError', '');
+      commit('setLoading', true);
+
+     await chatkit.GetUserJoinableRooms(state.user.username);
+     //console.log(joinableRoomObj);
+    } catch (error) {
+      handleError(commit, error)
+    }
+  },
   //ルームチェンジを行う処理
   async changeRoom({ commit }, roomId) {
     try {
@@ -75,6 +107,14 @@ export default {
       handleError(commit, error)
     }
   },
+  async selectJoinRoom({ commit }, roomId) {
+    try {
+      commit('setSeletJoinRoom', roomId);
+    } catch (error) {
+      handleError(commit, error)
+    }
+  },
+  
   //メッセージ送信の処理
   async sendMessage({ commit }, message) {
     try {

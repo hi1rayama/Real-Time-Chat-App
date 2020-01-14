@@ -11,8 +11,8 @@
 
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown text="SettingRoom" right>
-            <b-dropdown-item href="#">Create Room</b-dropdown-item>
-            <b-dropdown-item href="#">Join Room</b-dropdown-item>
+            <b-dropdown-item href="#" @click="onCreateRoom">Create Room</b-dropdown-item>
+            <b-dropdown-item href="#" @click="onJoinRoom">Join Room</b-dropdown-item>
             <b-dropdown-item href="#">Leave Room</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -31,11 +31,19 @@ export default {
     ...mapState(["user", "reconnect"])
   },
   methods: {
-    ...mapActions(["logout", "login"]),
+    ...mapActions(["logout", "login","joinableRoom"]),
     ...mapMutations(["setReconnect"]),
     onLogout() {
       this.$router.push({ path: "/" });
       this.logout();
+    },
+    onCreateRoom(){
+      this.$router.push({path:"chat/createroom"});
+
+    },
+    onJoinRoom(){
+      this.joinableRoom();
+      this.$router.push({path:"chat/joinRoom"})
     },
     unload() {
       if (this.user.username) {

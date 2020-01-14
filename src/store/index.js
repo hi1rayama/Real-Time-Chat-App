@@ -23,12 +23,14 @@ export default new Vuex.Store({
   rooms: [],
   users: [],
   messages: [],
-  userTyping: null
+  userTyping: null,
+  joinableRooms:[],
+  selectJoinRoomId:null
   },
   mutations,
   actions,
   getters: {
-    hasError: state => state.error ? true : false
+    hasError: state => state.error ? true : false,
   },
   plugins: [vuexLocal.plugin],
   strict: debug
