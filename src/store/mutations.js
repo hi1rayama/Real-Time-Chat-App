@@ -53,7 +53,10 @@ export default {
     joinableRoom(state,joinablerooms){
       state.joinableRooms=joinablerooms;
     },
-    setSeletJoinRoom(state,roomId){
-      state.selectJoinRoomId=roomId;
+    setUserRooms(state,userRooms){
+      state.userRooms=userRooms;
+    },
+    setSeletRoom(state,roomId){
+      state.selectRoomId=roomId;
     }
   }

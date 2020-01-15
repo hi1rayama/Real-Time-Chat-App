@@ -43,8 +43,6 @@ async function connectUser(userId) {
 }
 
 
-
-
 //ユーザーを作成する関数
 async function CreateUser(userName, userId) {
 
@@ -55,13 +53,14 @@ async function CreateUser(userName, userId) {
   })
     .then(() => {
       window.alert("User created success!");
-      AddUserToRoom(userId,'312a0630-c04e-4700-8546-754c1008a7ba');
+      AddUserToRoom(userId, '312a0630-c04e-4700-8546-754c1008a7ba');
     }).catch((err) => {
       window.alert(err);
     });
 
 }
-async function AddUserToRoom(userId,roomID){
+
+async function AddUserToRoom(userId, roomID) {
   chatkit.addUsersToRoom({
     roomId: roomID,
     userIds: [userId]
@@ -71,8 +70,8 @@ async function AddUserToRoom(userId,roomID){
 
 
 }
-async function CreateRoom(roomName, roomId, creatorId) {
 
+async function CreateRoom(roomName, roomId, creatorId) {
 
   chatkit.createRoom({
     id: roomId,
@@ -84,6 +83,28 @@ async function CreateRoom(roomName, roomId, creatorId) {
     }).catch((err) => {
       window.alert(err);
     });
+}
+
+async function GetUserRooms(userID) {
+  chatkit.getUserRooms({
+    userId: userID,
+  })
+    .then((roomList) => {
+      console.log(roomList);
+      store.commit('setUserRooms', roomList);
+    }).catch((err) => {
+      console.log(err);
+    });
+}
+
+async function LeaveUserToRoom(userID, roomID) {
+  chatkit.removeUsersFromRoom({
+    roomId: roomID,
+    userIds: [userID]
+  })
+    .then(() => {
+      console.log('removed');
+    }).catch((err) => { console.error(err);})
 }
 
 function GetUserJoinableRooms(userID) {
@@ -99,6 +120,8 @@ function GetUserJoinableRooms(userID) {
       return -1;
     });
 }
+
+
 
 async function subscribeToRoom(roomId) {
   store.commit('clearChatRoom');
@@ -130,6 +153,8 @@ async function subscribeToRoom(roomId) {
   return activeRoom;
 }
 
+
+
 async function sendMessage(text) {
   const messageId = await currentUser.sendMessage({
     text,
@@ -139,9 +164,13 @@ async function sendMessage(text) {
 }
 
 
+
+
 export function isTyping(roomId) {
   currentUser.isTypingIn({ roomId });
 }
+
+
 
 
 // ログアウト処理
@@ -158,5 +187,7 @@ export default {
   CreateUser,
   CreateRoom,
   GetUserJoinableRooms,
-  AddUserToRoom
+  AddUserToRoom,
+  GetUserRooms,
+  LeaveUserToRoom
 }

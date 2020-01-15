@@ -10,13 +10,19 @@
       <div class="ld ld-ring ld-spin"></div>
       <b-row>
         <b-col cols="3" class="joinableroom">
-          <JoinAbleRoomList />
+          <CurrentRoomList />
         </b-col>
         <b-col cols="7">
           <b-row>
             <b-col id="chat-content">
               <RoomInfo />
-              <b-button @click="onClick" variant="success" class="ld-ext-right" size="lg" :disabled="isValid">このROOMに入る</b-button>
+              <b-button
+                @click="onClick"
+                variant="success"
+                class="ld-ext-right"
+                size="lg"
+                :disabled="isValid"
+              >LEAVE THIS ROOM</b-button>
             </b-col>
           </b-row>
         </b-col>
@@ -26,39 +32,35 @@
 </template>
 
 <script>
-import JoinAbleRoomList from "@/components/JoinAbleRoomList.vue";
-import RoomInfo from "@/components/JoinAbleRoomInfo.vue";
-import {mapActions,mapState} from "vuex";
+import CurrentRoomList from "@/components/CurrentRoomList.vue";
+import RoomInfo from "@/components/UserRoomInfo.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
-  name: "joinroom",
+  name: "leaveroom",
   components: {
-    JoinAbleRoomList,
-   RoomInfo
+    CurrentRoomList,
+    RoomInfo
   },
-  computed:{
-      ...mapState(["selectRoomId"]),
-      isValid: function() {
-      const result=(this.selectRoomId === null);
+  computed: {
+    ...mapState(["selectRoomId"]),
+    isValid: function() {
+      const result = this.selectRoomId === null;
       return result;
-    },
+    }
   },
   methods: {
-    ...mapActions(["joinUserToRoom"]),
+    ...mapActions(["leaveUserToRoom"]),
     async onClick() {
-      const result=await this.joinUserToRoom();
-      if(result){
+       await this.leaveUserToRoom();
+     
         this.$router.push("/chat");
-      }else{
-          window.alert("エラー");
-      }
-      },
 
-      async onClickBack() {
-        this.$router.push("/chat");
-      }
-      
-    
+    },
+
+    async onClickBack() {
+      this.$router.push("/chat");
+    }
   }
 };
 </script>

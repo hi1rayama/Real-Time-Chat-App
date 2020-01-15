@@ -3,13 +3,13 @@
     <h4 ><font color="white">ROOM NAME</font></h4>
     <hr />
     <b-list-group >
-      <b-list-group-item v-for=" room in joinableRooms"
+      <b-list-group-item v-for=" room in userRooms"
                         :key="room.name"
                         href="#"
                         variant="success"
                         @click="onChange(room.id)"
                         >
-        # {{ room.name }}
+        #{{ room.name }}
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -23,7 +23,7 @@ export default {
   name: 'RoomList',
   computed: {
     ...mapState([
-      'rooms',
+      'userRooms',
       'selectRoomId',
       'joinableRooms'
     ]),

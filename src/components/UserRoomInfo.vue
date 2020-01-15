@@ -3,7 +3,7 @@
     <h4 class="print-message-list">ROOM INFOMATION</h4>
     <hr />
     <div id="chat-messages" class="message-group" v-chat-scroll="{smooth: true}">
-      <div class="roomInfo" v-for="room in joinableRooms" :key="room.id">
+      <div class="roomInfo" v-for="room in userRooms" :key="room.id">
         <div v-if="selectRoomId === room.id">
           <div class="room-infomation">
             <h3>
@@ -24,7 +24,7 @@
               <b-badge>ROOM CREATOR</b-badge>
             </h3>
             <hr />
-            <h4>{{room.created_by_id}}</h4>
+            <h4><b-icon icon="pencil"></b-icon>{{room.created_by_id}}</h4>
           </div>
            <div class="room-infomation">
             <h3>
@@ -32,7 +32,7 @@
             </h3>
             <hr />
             <div v-for="member in room.member_user_ids" :key="member">
-            <h4>{{member}}</h4>
+            <h4><b-icon icon="person"></b-icon>{{member}}</h4>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ import { mapState } from "vuex";
 export default {
   name: "message-list",
   computed: {
-    ...mapState(["messages", "userTyping", "joinableRooms", "selectRoomId"])
+    ...mapState(["messages", "userTyping", "userRooms", "selectRoomId"])
   }
 };
 </script>

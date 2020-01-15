@@ -13,7 +13,7 @@
           <b-nav-item-dropdown text="SettingRoom" right>
             <b-dropdown-item href="#" @click="onCreateRoom">Create Room</b-dropdown-item>
             <b-dropdown-item href="#" @click="onJoinRoom">Join Room</b-dropdown-item>
-            <b-dropdown-item href="#">Leave Room</b-dropdown-item>
+            <b-dropdown-item href="#" @click="onLeaveRoom">Leave Room</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -31,7 +31,7 @@ export default {
     ...mapState(["user", "reconnect"])
   },
   methods: {
-    ...mapActions(["logout", "login","joinableRoom"]),
+    ...mapActions(["logout", "login","joinableRoom","getRooms"]),
     ...mapMutations(["setReconnect"]),
     onLogout() {
       this.$router.push({ path: "/" });
@@ -45,6 +45,10 @@ export default {
       this.joinableRoom();
       this.$router.push({path:"chat/joinRoom"})
     },
+    onLeaveRoom(){
+      this.getRooms();
+      this.$router.push({path:"chat/leaveRoom"})
+    }, 
     unload() {
       if (this.user.username) {
         // User hasn't logged out

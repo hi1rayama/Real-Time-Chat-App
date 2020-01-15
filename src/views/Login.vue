@@ -6,7 +6,7 @@
       bg-variant="success"
       text-variant="white"
     >
-      <b-btn href="#" pill variant="primary" @click="onCreateUser" active>ユーザの作成</b-btn>
+      <b-btn href="#" pill variant="primary" @click="onCreateUser" active>CREATE USR</b-btn>
     </b-jumbotron>
     <b-container>
       <b-row>

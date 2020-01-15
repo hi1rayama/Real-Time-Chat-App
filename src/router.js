@@ -5,6 +5,7 @@ import ChatDashboard from './views/ChatDashboard.vue'
 import CreateUser from './views/CreateUser.vue'
 import CreateRoom from './views/CreateRoom.vue'
 import JoinRoom from './views/JoinRoom.vue'
+import LeaveRoom from './views/LeaveRoom.vue'
 
 Vue.use(Router)
 
@@ -37,5 +38,10 @@ export default new Router({
       name: 'joinroom',
       component: JoinRoom,
     },
+    {
+      path:'/chat/leaveroom',
+      name:'leaveroom',
+      component:LeaveRoom,
+    }
   ]
 })

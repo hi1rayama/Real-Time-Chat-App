@@ -16,7 +16,7 @@
       </b-form-group>
       <div class="clearfix">
         <b-button type="submit" variant="success" >
-          送 信
+          SEND
         </b-button>
       </div>
     </b-form>

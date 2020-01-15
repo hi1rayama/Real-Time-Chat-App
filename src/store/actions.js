@@ -97,13 +97,23 @@ export default {
       handleError(commit, error)
     }
   },
+  async getRooms({commit,state}){
+    try{
+      commit('setError','');
+
+      await chatkit.GetUserRooms(state.user.username);
+    }catch(error){
+      handleError(commit,error);
+    }
+
+  },
 
   //ルームに入る処理
   async joinUserToRoom({commit,state}) {
     try {
       commit('setError', '');
       
-      await chatkit.AddUserToRoom(state.user.username,state.selectJoinRoomId);
+      await chatkit.AddUserToRoom(state.user.username,state.selectRoomId);
       return true;
     } catch (error) {
       handleError(commit, error)
@@ -121,10 +131,22 @@ export default {
     }
   },
 
+  async leaveUserToRoom({commit,state}){
+    try{
+      commit('setError', '');
+      
+      await chatkit.LeaveUserToRoom(state.user.username,state.selectRoomId);
+     
+    }catch(error){
+      handleError(commit,error)
+    }
+
+  },
+
   
-  async selectJoinRoom({ commit }, roomId) {
+  async selectRoom({ commit }, roomId) {
     try {
-      commit('setSeletJoinRoom', roomId);
+      commit('setSeletRoom', roomId);
     } catch (error) {
       handleError(commit, error)
     }

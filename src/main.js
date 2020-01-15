@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
+import {BootstrapVue,BootstrapVueIcons} from 'bootstrap-vue'
 import VueChatScroll from 'vue-chat-scroll'
 
 import App from './App.vue'
@@ -14,6 +14,7 @@ process.version = "v1.1.1";//これを入れないとユーザとルームを作
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.use(VueChatScroll)
 
 new Vue({

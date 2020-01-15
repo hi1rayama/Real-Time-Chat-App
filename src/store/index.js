@@ -25,7 +25,8 @@ export default new Vuex.Store({
   messages: [],
   userTyping: null,
   joinableRooms:[],
-  selectJoinRoomId:null
+  userRooms:[],
+  selectRoomId:null
   },
   mutations,
   actions,
