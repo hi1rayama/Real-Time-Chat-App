@@ -22,7 +22,7 @@
                 class="ld-ext-right"
                 size="lg"
                 :disabled="isValid"
-              >このROOMに入る</b-button>
+              >JOIN ROOM</b-button>
             </b-col>
           </b-row>
         </b-col>
