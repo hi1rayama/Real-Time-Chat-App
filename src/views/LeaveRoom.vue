@@ -2,32 +2,34 @@
 
 <template>
   <!--ヘッダー部-->
-  <div class="joinroom">
-    <b-navbar id="chat-navbar" toggleable="md" type="dark" variant="success">
-      <b-navbar-brand href="#" @click="onClickBack">Demo</b-navbar-brand>
-    </b-navbar>
-    <b-container fluid class="ld-over">
-      <div class="ld ld-ring ld-spin"></div>
-      <b-row>
-        <b-col cols="3" class="joinableroom">
-          <CurrentRoomList />
-        </b-col>
-        <b-col cols="7">
-          <b-row>
-            <b-col id="chat-content">
-              <RoomInfo />
-              <b-button
-                @click="onClick"
-                variant="success"
-                class="ld-ext-right"
-                size="lg"
-                :disabled="isValid"
-              >LEAVE THIS ROOM</b-button>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+  <div class="leaveroom">
+    <b-form @submit.prevent="onSubmit">
+      <b-navbar id="chat-navbar" toggleable="md" type="dark" variant="success">
+        <b-navbar-brand href="#" @click="onClickBack">Demo</b-navbar-brand>
+      </b-navbar>
+      <b-container fluid class="ld-over">
+        <div class="ld ld-ring ld-spin"></div>
+        <b-row>
+          <b-col cols="3" class="joinableroom">
+            <CurrentRoomList />
+          </b-col>
+          <b-col cols="7">
+            <b-row>
+              <b-col id="chat-content">
+                <RoomInfo />
+                <b-button
+                  type="submit"
+                  variant="success"
+                  class="ld-ext-right"
+                  size="lg"
+                  :disabled="isValid"
+                >LEAVE THIS ROOM</b-button>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
+    </b-form>
   </div>
 </template>
 
@@ -51,11 +53,9 @@ export default {
   },
   methods: {
     ...mapActions(["leaveUserToRoom"]),
-    async onClick() {
-       await this.leaveUserToRoom();
-     
-        this.$router.push("/chat");
-
+    async onSubmit() {
+      await this.leaveUserToRoom();
+      this.$router.push("/chat");
     },
 
     async onClickBack() {

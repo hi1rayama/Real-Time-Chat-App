@@ -3,77 +3,66 @@
     <small class="text-muted">@{{ user.username }}</small>
     <b-form @submit.prevent="onSubmit" class="ld-over" v-bind:class="{ running: sending }">
       <div class="ld ld-ring ld-spin"></div>
-      <b-alert variant="danger" :show="hasError">{{ error }} </b-alert>
+      <b-alert variant="danger" :show="hasError">{{ error }}</b-alert>
       <b-form-group>
-        <b-form-input id="message-input"
-              type="text"
-              v-model="message"
-              @input="isTyping"
-              placeholder="Enter Message"
-              autocomplete="off"
-              required>
-</b-form-input>
+        <b-form-input
+          id="message-input"
+          type="text"
+          v-model="message"
+          @input="isTyping"
+          placeholder="Enter Message"
+          autocomplete="off"
+          required
+        ></b-form-input>
       </b-form-group>
       <div class="clearfix">
-        <b-button type="submit" variant="success" >
-          SEND
-        </b-button>
+        <b-button type="submit" variant="success">SEND</b-button>
       </div>
     </b-form>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
-import { isTyping } from '../chatkit.js'
+import { mapActions, mapState, mapGetters } from "vuex";
+import { isTyping } from "../chatkit.js";
 
 export default {
-  name: 'message-form',
+  name: "message-form",
   data() {
     return {
-      message: ''
-    }
+      message: ""
+    };
   },
   computed: {
-    ...mapState([
-      'user',
-      'sending',
-      'error',
-      'activeRoom'
-    ]),
-    ...mapGetters([
-      'hasError'
-    ])
+    ...mapState(["user", "sending", "error", "activeRoom"]),
+    ...mapGetters(["hasError"])
   },
   methods: {
-    ...mapActions([
-      'sendMessage',
-    ]),
+    ...mapActions(["sendMessage"]),
     async onSubmit() {
       const result = await this.sendMessage(this.message);
-      if(result) {
-        this.message = '';
+      if (result) {
+        this.message = "";
       }
     },
-     async isTyping() {
+    async isTyping() {
       await isTyping(this.activeRoom.id);
     }
   }
-}
+};
 </script>
 
 <style>
- .message-form-ld-over{
+.message-form-ld-over {
   margin-top: 10px;
   margin-bottom: 15px;
   padding-right: 15px;
   padding-left: 15px;
   border-radius: 4px;
   border: 2px solid #57c957;
-  background-color: white;     
-
- }
-.clearfix{
-    margin-bottom:2px;
+  background-color: white;
+}
+.clearfix {
+  margin-bottom: 2px;
 }
 </style>

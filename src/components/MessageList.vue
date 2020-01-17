@@ -1,40 +1,34 @@
 <template>
   <div class="message-list">
     <h4 class="print-message-list">Message List</h4>
-    <hr>
+    <hr />
     <div id="chat-messages" class="message-group" v-chat-scroll="{smooth: true}">
-        
       <div class="message" v-for="(message, index) in messages" :key="index">
         <div class="clearfix">
           <h4 class="message-title">{{ message.name }}</h4>
           <small class="text-muted float-right">@{{ message.username }}</small>
         </div>
-        <p class="message-text">
-          {{ message.text }}
-        </p>
+        <p class="message-text">{{ message.text }}</p>
         <div class="clearfix">
           <small class="text-muted float-right">{{ message.date }}</small>
         </div>
       </div>
     </div>
     <div class="user-typing">
-  <small class="text-muted" v-if="userTyping">@{{ userTyping }} is typing....</small>
-</div>
+      <small class="text-muted" v-if="userTyping">@{{ userTyping }} is typing....</small>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  name: 'message-list',
+  name: "message-list",
   computed: {
-    ...mapState([
-      'messages',
-      'userTyping'
-    ])
+    ...mapState(["messages", "userTyping"])
   }
-}
+};
 </script>
 
 <style>
@@ -51,8 +45,8 @@ export default {
   height: 65vh !important;
   overflow-y: scroll;
 }
-.print-message-list{
-    padding-top:10px; 
+.print-message-list {
+  padding-top: 10px;
 }
 .message {
   border: 1px solid green;
@@ -62,7 +56,7 @@ export default {
 }
 .message-title {
   font-size: 1rem;
-  display:inline;
+  display: inline;
 }
 .message-text {
   color: black;

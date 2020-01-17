@@ -16,7 +16,13 @@
           <b-row>
             <b-col id="chat-content">
               <RoomInfo />
-              <b-button @click="onClick" variant="success" class="ld-ext-right" size="lg" :disabled="isValid">このROOMに入る</b-button>
+              <b-button
+                @click="onClick"
+                variant="success"
+                class="ld-ext-right"
+                size="lg"
+                :disabled="isValid"
+              >このROOMに入る</b-button>
             </b-col>
           </b-row>
         </b-col>
@@ -28,37 +34,35 @@
 <script>
 import JoinAbleRoomList from "@/components/JoinAbleRoomList.vue";
 import RoomInfo from "@/components/JoinAbleRoomInfo.vue";
-import {mapActions,mapState} from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "joinroom",
   components: {
     JoinAbleRoomList,
-   RoomInfo
+    RoomInfo
   },
-  computed:{
-      ...mapState(["selectRoomId"]),
-      isValid: function() {
-      const result=(this.selectRoomId === null);
+  computed: {
+    ...mapState(["selectRoomId"]),
+    isValid: function() {
+      const result = this.selectRoomId === null;
       return result;
-    },
+    }
   },
   methods: {
     ...mapActions(["joinUserToRoom"]),
     async onClick() {
-      const result=await this.joinUserToRoom();
-      if(result){
+      const result = await this.joinUserToRoom();
+      if (result) {
         this.$router.push("/chat");
-      }else{
-          window.alert("エラー");
+      } else {
+        window.alert("エラー");
       }
-      },
+    },
 
-      async onClickBack() {
-        this.$router.push("/chat");
-      }
-      
-    
+    async onClickBack() {
+      this.$router.push("/chat");
+    }
   }
 };
 </script>

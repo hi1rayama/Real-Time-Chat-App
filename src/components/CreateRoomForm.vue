@@ -16,7 +16,11 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="userNickNameInputGroup" label="User Nick Name(user ID)" label-for="userNickNameInput">
+      <b-form-group
+        id="userNickNameInputGroup"
+        label="User Nick Name(user ID)"
+        label-for="userNickNameInput"
+      >
         <b-form-input
           id="userNickNameInput"
           type="text"
@@ -27,8 +31,6 @@
           required
         ></b-form-input>
       </b-form-group>
-        
-      
 
       <b-button
         type="submit"
@@ -45,14 +47,14 @@
 </template>
 
 <script>
-import { mapState, mapGetters ,mapActions} from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "login-form",
   data() {
     return {
       roomId: "",
-      roomName:"",
+      roomName: ""
     };
   },
   computed: {
@@ -60,22 +62,21 @@ export default {
       const result = this.roomId.length < 3;
       return result ? result : this.loading;
     },
-    ...mapState(["loading", "error","user"]),
-    ...mapGetters(["hasError"]),
+    ...mapState(["loading", "error", "user"]),
+    ...mapGetters(["hasError"])
   },
- methods: {
-    ...mapActions([
-      'createRoom',
-      'joinableRoom'
-    ]),
+  methods: {
+    ...mapActions(["createRoom", "joinableRoom"]),
     async onSubmit() {
-     // const result = await this.createRoom({roomName:this.roomName,roomId:this.roomId,creatorId:this.user.username});
-     const result = await this.joinableRoom();
-      if(result) {
-        this.$router.push('/chat');
+      const result = await this.createRoom({
+        roomName: this.roomName,
+        roomId: this.roomId,
+        creatorId: this.user.username
+      });
+      if (result) {
+        this.$router.push("/chat");
       }
     }
-  } 
-
+  }
 };
 </script>

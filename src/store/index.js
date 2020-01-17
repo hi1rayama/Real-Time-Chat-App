@@ -14,19 +14,19 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
   state: {
-  loading: false,
-  sending: false,
-  error: null,
-  user: null,
-  reconnect: false,
-  activeRoom: null,
-  rooms: [],
-  users: [],
-  messages: [],
-  userTyping: null,
-  joinableRooms:[],
-  userRooms:[],
-  selectRoomId:null
+    loading: false,
+    sending: false,
+    error: null,
+    user: null,
+    reconnect: false,
+    activeRoom: null,
+    rooms: [],
+    users: [],
+    messages: [],
+    userTyping: null,
+    joinableRooms: [],
+    userRooms: [],
+    selectRoomId: null
   },
   mutations,
   actions,

@@ -31,24 +31,23 @@ export default {
     ...mapState(["user", "reconnect"])
   },
   methods: {
-    ...mapActions(["logout", "login","joinableRoom","getRooms"]),
+    ...mapActions(["logout", "login", "joinableRoom", "getRooms"]),
     ...mapMutations(["setReconnect"]),
     onLogout() {
       this.$router.push({ path: "/" });
       this.logout();
     },
-    onCreateRoom(){
-      this.$router.push({path:"chat/createroom"});
-
+    onCreateRoom() {
+      this.$router.push({ path: "chat/createroom" });
     },
-    onJoinRoom(){
+    onJoinRoom() {
       this.joinableRoom();
-      this.$router.push({path:"chat/joinRoom"})
+      this.$router.push({ path: "chat/joinRoom" });
     },
-    onLeaveRoom(){
+    onLeaveRoom() {
       this.getRooms();
-      this.$router.push({path:"chat/leaveRoom"})
-    }, 
+      this.$router.push({ path: "chat/leaveRoom" });
+    },
     unload() {
       if (this.user.username) {
         // User hasn't logged out
@@ -67,7 +66,6 @@ export default {
 
 <style>
 #chat-navbar {
-
   margin-bottom: 15px;
 }
 </style>

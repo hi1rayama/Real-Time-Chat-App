@@ -4,7 +4,11 @@
     <hr />
     <b-form @submit.prevent="onSubmit">
       <b-alert variant="danger" :show="hasError">{{ error }}</b-alert>
-      <b-form-group id="userFullNameInputGroup" label="User Full Name" label-for="userFullNameInput">
+      <b-form-group
+        id="userFullNameInputGroup"
+        label="User Full Name"
+        label-for="userFullNameInput"
+      >
         <b-form-input
           id="userFullNameInput"
           type="text"
@@ -16,7 +20,11 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="userNickNameInputGroup" label="User Nick Name(user ID)" label-for="userNickNameInput">
+      <b-form-group
+        id="userNickNameInputGroup"
+        label="User Nick Name(user ID)"
+        label-for="userNickNameInput"
+      >
         <b-form-input
           id="userNickNameInput"
           type="text"
@@ -27,8 +35,6 @@
           required
         ></b-form-input>
       </b-form-group>
-        
-      
 
       <b-button
         type="submit"
@@ -45,14 +51,14 @@
 </template>
 
 <script>
-import { mapState, mapGetters ,mapActions} from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "login-form",
   data() {
     return {
       userId: "",
-      userFullName:""
+      userFullName: ""
     };
   },
   computed: {
@@ -63,17 +69,17 @@ export default {
     ...mapState(["loading", "error"]),
     ...mapGetters(["hasError"])
   },
- methods: {
-    ...mapActions([
-      'createUser',
-    ]),
+  methods: {
+    ...mapActions(["createUser"]),
     async onSubmit() {
-      const result = await this.createUser({userFullName:this.userFullName,userId:this.userId});
-      if(result) {
-        this.$router.push('/');
+      const result = await this.createUser({
+        userFullName: this.userFullName,
+        userId: this.userId
+      });
+      if (result) {
+        this.$router.push("/");
       }
     }
-  } 
-
+  }
 };
 </script>

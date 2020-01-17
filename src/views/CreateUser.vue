@@ -3,11 +3,12 @@
 <template>
   <!--ヘッダー部-->
   <div class="test">
-    <b-jumbotron  header="Real time chat App Demo"
-                  lead="Powered by Chatkit SDK and Bootstrap-Vue"
-                  bg-variant="success"
-                  text-variant="white">
-    </b-jumbotron>
+    <b-jumbotron
+      header="Real time chat App Demo"
+      lead="Powered by Chatkit SDK and Bootstrap-Vue"
+      bg-variant="success"
+      text-variant="white"
+    ></b-jumbotron>
     <b-container>
       <b-row>
         <!--lg:主にデスクトップ md:主にノートパソコンや横表示のタブレット のときの表示個数-->
@@ -23,16 +24,12 @@
 </template>
 
 <script>
-
-
-import CreateUserForm from '@/components/CreateUserForm.vue'
-
-
+import CreateUserForm from "@/components/CreateUserForm.vue";
 
 export default {
-  name: 'creatuser',
+  name: "creatuser",
   components: {
     CreateUserForm
   }
-}
+};
 </script>

@@ -24,15 +24,21 @@
               <b-badge>ROOM CREATOR</b-badge>
             </h3>
             <hr />
-            <h4><b-icon icon="pencil"></b-icon>{{room.created_by_id}}</h4>
+            <h4>
+              <b-icon icon="pencil"></b-icon>
+              {{room.created_by_id}}
+            </h4>
           </div>
-           <div class="room-infomation">
+          <div class="room-infomation">
             <h3>
               <b-badge>ROOM MEMBERS</b-badge>
             </h3>
             <hr />
             <div v-for="member in room.member_user_ids" :key="member">
-            <h4><b-icon icon="person"></b-icon>{{member}}</h4>
+              <h4>
+                <b-icon icon="person"></b-icon>
+                {{member}}
+              </h4>
             </div>
           </div>
         </div>
