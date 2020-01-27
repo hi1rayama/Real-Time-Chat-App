@@ -1,8 +1,8 @@
 <template>
   <div class="login-form">
-    <h5 class="text-center">CREATE ROOM FORM</h5>
+    <h3 class="text-center" style="padding-top:10px">CREATE ROOM FORM</h3>
     <hr />
-    <b-form @submit.prevent="onSubmit">
+    <b-form @submit.prevent="onSubmit" class="form">
       <b-alert variant="danger" :show="hasError">{{ error }}</b-alert>
       <b-form-group id="userFullNameInputGroup" label="ROOM NAME" label-for="RoomNameInput">
         <b-form-input
@@ -80,3 +80,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form{
+  margin: 15px;
+  padding: 15px;
+
+}
+.login-form{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+   background-color: #DEFFDE;
+}
+
+</style>
