@@ -53,6 +53,7 @@ export default {
     ...mapActions(["joinUserToRoom"]),
     async onClick() {
       const result = await this.joinUserToRoom();
+      
       if (result) {
         this.$router.push("/chat");
       } else {

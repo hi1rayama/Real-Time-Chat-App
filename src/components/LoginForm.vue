@@ -1,10 +1,12 @@
 <template>
   <div class="login-form">
-    <h5 class="text-center">LOGIN FORM</h5>
+    <h3 class="text-center" style="padding-top:10px">LOGIN FORM</h3>
     <hr />
-    <b-form @submit.prevent="onSubmit">
+    <b-form @submit.prevent="onSubmit" class="form">
       <b-alert variant="danger" :show="hasError">{{ error }}</b-alert>
-
+       <h2>
+          <b-icon icon="person-fill"></b-icon>
+          </h2>
       <b-form-group id="userInputGroup" label="User Name(User ID)" label-for="userInput">
         <b-form-input
           id="userInput"
@@ -65,3 +67,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form{
+  margin: 15px;
+  padding: 15px;
+
+}
+.login-form{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+   background-color: #DEFFDE;
+}
+
+</style>
