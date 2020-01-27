@@ -20,6 +20,9 @@ Qiitaの2020年のフロントエンドマスターになりたければこの9�
 
  
 ## 画像
+* ログイン画面
+<img src="picture/Login.png" >
+
 * ホーム画面
 <img src="picture/Home.png" >
 
@@ -30,7 +33,7 @@ Qiitaの2020年のフロントエンドマスターになりたければこの9�
 <img src="picture/CreateRoom.png" >
 
 * ルーム入室画面
-<img src="picture/JoinRoom.png" >
+<img src="picture/JoinAbleRoomInfo.png" >
 
 * ルーム退室画面
 <img src="picture/LeaveRoom.png" >
